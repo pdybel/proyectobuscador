@@ -43,13 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
 marca.addEventListener("change", (e) => {
 
     datosBusqueda.marca = e.target.value;
-    datosBusqueda.year = e.target.value
-    datosBusqueda.minimo = e.target.value
-    datosBusqueda.maximo = e.target.value
-    datosBusqueda.puertas = e.target.value
-    datosBusqueda.transmision = e.target.value
-    datosBusqueda.color = e.target.value
     
+    filtrarAuto();
 })
 year.addEventListener("change", (e) => {
     datosBusqueda.year = e.target.value
@@ -80,7 +75,7 @@ transmision.addEventListener("change", (e) => {
 color.addEventListener("change", (e) => {
 
     datosBusqueda.color = e.target.value
-    console.log(datosBusqueda)
+    
 })
 
 //Funciones
@@ -110,5 +105,18 @@ function llenarSelect() {
     }
 }
 
+// funcion que filtra en base a la busqueda
 
+function filtrarAuto(){
+    const resultado = autos.filter(filtrarMarca);
+    console.log(resultado)  
+}
+
+function filtrarMarca(auto) {
+    const {marca} = datosBusqueda;
+    if(marca) {
+        return auto.marca === marca
+    }
+    return auto;
+}
 
